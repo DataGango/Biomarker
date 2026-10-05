@@ -1,6 +1,6 @@
 # Publish the site with GitHub Pages
 
-This folder is a self-contained static site. It includes the cited research paper and PDF, the downloaded infographic, trial dataset, and charts. The diabetes-trial analysis is explicitly separated from the childhood-cancer evidence. Local copies of full ACS/NCI pages and the ACS biomarker brochure remain local-only; public references link to the original publishers.
+This folder is a self-contained static site. It includes the cited research paper and PDF, original portrait short video and transcript, the downloaded infographic, trial dataset, and charts. The narration is computer-generated, not a patient testimonial. The diabetes-trial analysis is explicitly separated from the childhood-cancer evidence. Local copies of full ACS/NCI pages and the ACS biomarker brochure remain local-only; public references link to the original publishers.
 
 ## Publish
 

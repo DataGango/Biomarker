@@ -52,6 +52,12 @@
     .hero-figure img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 42%; border-radius:2px; }
     .hero-figure figcaption { margin-top:7px; color:var(--muted); font-size:10px; }
     .hero-figure::after { content:""; position:absolute; width:43px; height:43px; right:-10px; bottom:22px; border-right:3px solid var(--coral); border-bottom:3px solid var(--coral); pointer-events:none; }
+    .short-feature { display:grid; grid-template-columns:minmax(0,1fr) 250px; align-items:center; gap:36px; padding:28px 0; border-bottom:1px solid var(--rule); }
+    .short-copy h2 { margin:0 0 8px; font:400 29px/1.2 var(--serif); }
+    .short-copy p { max-width:640px; margin-bottom:10px; color:var(--muted); font-size:13px; }
+    .short-copy a { font-size:12px; font-weight:750; }
+    .short-video { width:100%; max-height:445px; aspect-ratio:9/16; background:#102b28; object-fit:contain; }
+    .short-caption { margin:5px 0 0; color:var(--muted); font-size:10px; text-align:center; }
     .metrics { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
     .metric { padding:20px 24px 18px 0; }
     .metric + .metric { padding-left:24px; border-left:1px solid var(--rule); }
@@ -115,6 +121,9 @@
       .mast-note { max-width:130px; text-align:right; }
       .hero { grid-template-columns:1fr; gap:24px; padding-top:36px; }
       .hero-figure { max-width:540px; }
+      .short-feature { grid-template-columns:1fr; }
+      .short-copy h2 { font-size:25px; }
+      .short-video { width:min(100%,260px); max-height:430px; margin:0 auto; }
       h1 { font-size:46px; }
       .metrics { grid-template-columns:1fr; }
       .metric,.metric + .metric { display:grid; grid-template-columns:100px 1fr; align-items:baseline; gap:0 12px; padding:13px 0; border-left:0; }
@@ -157,6 +166,24 @@
         <img src="childhood-cancer-hope-progress.png" alt="Childhood cancer research infographic about genomics, precision medicine, immunotherapy, clinical trials, survivorship, and safer treatments" fetchpriority="high">
         <figcaption>Childhood Cancer: Hope in Progress. Research themes shown in the downloaded infographic.</figcaption>
       </figure>
+    </section>
+
+    <section class="short-feature" aria-labelledby="short-title">
+      <div class="short-copy">
+        <p class="kicker">Original educational short · 49 seconds</p>
+        <h2 id="short-title">Childhood cancer, in context</h2>
+        <p>A source-grounded overview of childhood cancer diversity, U.S. estimates, survival-statistic context, inherited risk, and questions families can take to a pediatric oncology team.</p>
+        <p>The narration is computer-generated. This is not a patient testimonial, diagnosis, treatment recommendation, or individual prognosis.</p>
+        <a href="video_narration.txt">Read the full narration and source credits</a>
+        <span aria-hidden="true"> · </span><a href="childhood-cancer-short.mp4" download>Download MP4</a>
+      </div>
+      <div>
+        <video class="short-video" controls playsinline preload="metadata" poster="childhood-cancer-hope-progress.png" aria-label="Original narrated educational short about childhood cancer">
+          <source src="childhood-cancer-short.mp4" type="video/mp4">
+          Your browser does not support MP4 playback. <a href="childhood-cancer-short.mp4">Download the video.</a>
+        </video>
+        <p class="short-caption">Key points are shown on screen. Open the narration link for the full spoken text.</p>
+      </div>
     </section>
 
     <section class="metrics" aria-label="Research snapshot">

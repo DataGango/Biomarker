@@ -4,3 +4,7 @@ __pycache__/
 # Source extracts and publisher PDF are for local research use; do not publish mirrors.
 data/*.txt
 data/cancer_biomarkers.pdf
+childhood-cancer-silent.mov
+childhood-cancer-video-only.m4v
+childhood-cancer-narration.aiff
+childhood-cancer-narration.m4a

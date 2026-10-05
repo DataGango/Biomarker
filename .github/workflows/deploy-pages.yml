@@ -24,7 +24,7 @@ jobs:
       - name: Prepare public site files
         run: |
           mkdir -p _site/data
-          cp index.html childhood_cancer_research.md childhood_cancer_research.pdf childhood-cancer-hope-progress.png dataset_analysis.md _site/
+          cp index.html childhood_cancer_research.md childhood_cancer_research.pdf childhood-cancer-hope-progress.png childhood-cancer-short.mp4 video_narration.txt dataset_analysis.md _site/
           cp data/*.csv data/*.svg _site/data/
 
       - name: Configure GitHub Pages
