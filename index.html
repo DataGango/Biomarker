@@ -111,6 +111,8 @@
     .site-search button { padding:0 13px; border:1px solid var(--forest); border-radius:2px; background:var(--forest); color:white; font-size:12px; font-weight:700; cursor:pointer; }
     .disclaimer { margin:28px 0 0; padding:14px 16px; background:var(--coral-light); color:#643a31; font-size:12px; }
     footer { display:flex; justify-content:space-between; gap:20px; padding:18px 0 30px; border-top:1px solid var(--rule); color:var(--muted); font-size:10px; }
+    .social-links { display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
+    .share-control { padding:2px 0; border:0; background:none; color:var(--forest); font:inherit; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
     [hidden] { display:none !important; }
     @media (max-width:850px) {
       .hero { gap:28px; }
@@ -252,6 +254,7 @@
           <div class="dataset-links">
             <a class="action" href="dataset_analysis.md">Read the complete dataset summary</a>
             <a class="action outline" href="data/diabetes_trials.csv" download>Download the dataset</a>
+            <a class="action outline" href="diabetes_trials_three_periods.pdf" download>Download the diabetes-trials paper</a>
           </div>
         </section>
 
@@ -344,7 +347,9 @@
         <p class="disclaimer"><strong>Important:</strong> This educational page is not medical advice, a screening recommendation, a diagnosis, or a personal prognosis. Cancer statistics describe groups and may change over time. Discuss symptoms, exposures, testing, and treatment with qualified clinicians.</p>
       </article>
     </div>
-    <footer><span>Childhood Cancer · Research field notes</span><span><a href="childhood_cancer_research.md">Full cited research paper</a> · <a href="https://www.facebook.com/profile.php?id=61595341701921" target="_blank" rel="noopener noreferrer" aria-label="Visit the Childhood Cancer Facebook Page">Facebook Page</a></span></footer>
+    <footer><span>Childhood Cancer · Research field notes</span><span><a href="childhood_cancer_research.md">Full cited research paper</a> · <a href="https://www.facebook.com/profile.php?id=61595341701921" target="_blank" rel="noopener noreferrer" aria-label="Visit the Childhood Cancer Facebook Page">Facebook Page</a></span>
+      <span class="social-links"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdatagango.github.io%2FBiomarker%2F" target="_blank" rel="noopener noreferrer">Share on Facebook</a> · <button class="share-control" id="share-page" type="button">Share page</button><span class="small">On a phone, Share page can offer Instagram if installed.</span></span>
+    </footer>
   </div>
   <script>
     const searchForm = document.querySelector("#search-form");
@@ -363,6 +368,20 @@
     });
     searchInput.addEventListener("input", () => {
       if (!searchInput.value.trim()) searchableSections.forEach((section) => { section.hidden = false; });
+    });
+    document.querySelector("#share-page").addEventListener("click", async () => {
+      const shareData = { title: document.title, text: "Childhood cancer research and family resources", url: window.location.href };
+      const button = document.querySelector("#share-page");
+      try {
+        if (navigator.share) await navigator.share(shareData);
+        else {
+          await navigator.clipboard.writeText(shareData.url);
+          button.textContent = "Link copied";
+          setTimeout(() => { button.textContent = "Share page"; }, 2200);
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") button.textContent = "Sharing unavailable";
+      }
     });
   </script>
 </body>
