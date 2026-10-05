@@ -58,6 +58,10 @@
     .short-copy a { font-size:12px; font-weight:750; }
     .short-video { width:100%; max-height:445px; aspect-ratio:9/16; background:#102b28; object-fit:contain; }
     .short-caption { margin:5px 0 0; color:var(--muted); font-size:10px; text-align:center; }
+    .reel-share { display:flex; flex-wrap:wrap; align-items:center; gap:7px 12px; margin-top:13px; font-size:11px; }
+    .reel-share a { color:var(--forest); font-weight:750; }
+    .reel-share .share-control { font-size:11px; }
+    .reel-share-status { flex-basis:100%; color:var(--muted); font-size:10px; }
     .metrics { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
     .metric { padding:20px 24px 18px 0; }
     .metric + .metric { padding-left:24px; border-left:1px solid var(--rule); }
@@ -178,6 +182,12 @@
         <p>The narration is computer-generated. This is not a patient testimonial, diagnosis, treatment recommendation, or individual prognosis.</p>
         <a href="video_narration.txt">Read the full narration and source credits</a>
         <span aria-hidden="true"> · </span><a href="childhood-cancer-short.mp4" download>Download MP4</a>
+        <div class="reel-share" aria-label="Share the childhood cancer video">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdatagango.github.io%2FBiomarker%2Fchildhood-cancer-short.mp4" target="_blank" rel="noopener noreferrer">Share this video on Facebook</a>
+          <button class="share-control copy-video-link" type="button" data-copy-url="https://datagango.github.io/Biomarker/childhood-cancer-short.mp4">Copy video link for Instagram</button>
+          <button class="share-control native-video-share" type="button" data-video-title="Childhood cancer, in context" data-video-url="https://datagango.github.io/Biomarker/childhood-cancer-short.mp4">More share options</button>
+          <span class="reel-share-status" aria-live="polite"></span>
+        </div>
       </div>
       <div>
         <video class="short-video" controls playsinline preload="metadata" poster="childhood-cancer-hope-progress.png" aria-label="Original narrated educational short about childhood cancer">
@@ -197,6 +207,12 @@
         <p><a href="micro_nanorobots_childhood_cancer_review.pdf" download>Download the nine-page review (PDF)</a></p>
         <p><a href="micro_nanorobots_childhood_cancer_review.md">Read the review text</a></p>
         <p><a href="nanorobot-video_narration.txt">Read the Reel narration and references</a><span aria-hidden="true"> · </span><a href="nanorobot-short.mp4" download>Download the Facebook Reel</a></p>
+        <div class="reel-share" aria-label="Share the nanorobotics research Reel">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdatagango.github.io%2FBiomarker%2Fnanorobot-short.mp4" target="_blank" rel="noopener noreferrer">Share this Reel on Facebook</a>
+          <button class="share-control copy-video-link" type="button" data-copy-url="https://datagango.github.io/Biomarker/nanorobot-short.mp4">Copy Reel link for Instagram</button>
+          <button class="share-control native-video-share" type="button" data-video-title="Nanorobots and childhood cancer research" data-video-url="https://datagango.github.io/Biomarker/nanorobot-short.mp4">More share options</button>
+          <span class="reel-share-status" aria-live="polite"></span>
+        </div>
         <p class="small">Source file supplied by the site owner. Search date: October 5, 2026. This review is not medical advice.</p>
       </div>
       <div>
@@ -382,6 +398,32 @@
       } catch (error) {
         if (error.name !== "AbortError") button.textContent = "Sharing unavailable";
       }
+    });
+    document.querySelectorAll(".copy-video-link").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const status = button.closest(".reel-share").querySelector(".reel-share-status");
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyUrl);
+          status.textContent = "Video link copied. Paste it into an Instagram DM or story link sticker.";
+        } catch {
+          status.textContent = button.dataset.copyUrl;
+        }
+      });
+    });
+    document.querySelectorAll(".native-video-share").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const status = button.closest(".reel-share").querySelector(".reel-share-status");
+        const shareData = { title: button.dataset.videoTitle, text: "Watch this research-based childhood cancer video", url: button.dataset.videoUrl };
+        try {
+          if (navigator.share) await navigator.share(shareData);
+          else {
+            await navigator.clipboard.writeText(shareData.url);
+            status.textContent = "Video link copied. Paste it into your preferred app.";
+          }
+        } catch (error) {
+          if (error.name !== "AbortError") status.textContent = "Use the Facebook link or copy the video link for Instagram.";
+        }
+      });
     });
   </script>
 </body>
