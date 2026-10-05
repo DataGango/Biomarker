@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.py[cod]
+# Source extracts and publisher PDF are for local research use; do not publish mirrors.
+data/*.txt
+data/cancer_biomarkers.pdf
