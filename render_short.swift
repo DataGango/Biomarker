@@ -5,7 +5,8 @@ import CoreVideo
 import ImageIO
 
 let root = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
-let silentMovie = root.appendingPathComponent("childhood-cancer-silent.mov")
+let topic = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "childhood-cancer"
+let silentMovie = root.appendingPathComponent("\(topic)-silent.mov")
 let imageURL = root.appendingPathComponent("childhood-cancer-hope-progress.png")
 let width = 1080
 let height = 1920
@@ -17,6 +18,14 @@ let scenes: [(String, String, String, Double, CGColor)] = [
     ("INHERITED RISK · NCI ESTIMATE", "About 8–10%", "Inherited cancer-predisposition variants account for this estimated share of childhood cancers overall. The proportion varies by cancer type.", 8.0, CGColor(red: 0.33, green: 0.22, blue: 0.18, alpha: 1)),
     ("CARE IS A TEAM EFFORT", "Ask. Learn.\nStay supported.", "Talk with a pediatric oncology team about diagnosis, testing, treatment options, trials, family support, and follow-up after treatment.", 9.0, CGColor(red: 0.075, green: 0.20, blue: 0.18, alpha: 1)),
     ("RESEARCH · CARE · HOPE", "For families,\nwith facts.", "NCI: Cancer in Children and Adolescents. ACS: Childhood Leukemia Survival Rates; Genetics and Cancer Risk. Educational information, not medical advice.", 9.0, CGColor(red: 0.12, green: 0.23, blue: 0.30, alpha: 1))
+]
+let nanorobotScenes: [(String, String, String, Double, CGColor)] = [
+    ("EMERGING RESEARCH · NOT A TREATMENT", "Tiny robots.\nBig questions.", "Researchers are studying whether micro- and nanorobots could guide medicine toward childhood tumors.", 7.0, CGColor(red: 0.075, green: 0.20, blue: 0.18, alpha: 1)),
+    ("NEUROBLASTOMA · LAB STUDY", "Tested in vitro.", "A magnetic diatom microrobot carried drug formulations in laboratory experiments. This is not evidence of benefit in children.", 8.0, CGColor(red: 0.10, green: 0.31, blue: 0.27, alpha: 1)),
+    ("RETINOBLASTOMA · BENCHTOP", "Navigation\nprototype.", "A microrobotic catheter was navigated in vascular phantoms. It was an engineering demonstration, not a treatment trial.", 8.0, CGColor(red: 0.14, green: 0.25, blue: 0.34, alpha: 1)),
+    ("THE CLINICAL GAP", "Promising is not\nproven.", "The review did not identify an interventional pediatric cancer trial of the robotic platforms it examined.", 7.0, CGColor(red: 0.33, green: 0.22, blue: 0.18, alpha: 1)),
+    ("WHAT RESEARCH MUST SHOW", "Guide. Track.\nClear safely.", "Studies must test added benefit, reliable imaging and navigation, safe material clearance, and reproducible manufacturing.", 7.0, CGColor(red: 0.075, green: 0.20, blue: 0.18, alpha: 1)),
+    ("RESEARCH · NOT MEDICAL ADVICE", "Evidence first.", "Source: 2026 literature-based narrative review. Discuss treatment with a pediatric oncology team.", 7.0, CGColor(red: 0.12, green: 0.23, blue: 0.30, alpha: 1))
 ]
 
 func drawText(_ text: String, context: CGContext, rect: CGRect, size: CGFloat, color: CGColor, fontName: String = "AvenirNext-DemiBold", alignment: CTTextAlignment = .left) {
@@ -97,7 +106,8 @@ func main() async throws {
     writer.startWriting()
     writer.startSession(atSourceTime: .zero)
     var frameNumber: Int64 = 0
-    for (index, scene) in scenes.enumerated() {
+    let selectedScenes = topic == "nanorobot" ? nanorobotScenes : scenes
+    for (index, scene) in selectedScenes.enumerated() {
         let frame = try makeFrame(scene: scene, index: index, poster: poster)
         let totalFrames = Int(scene.3 * Double(fps))
         for _ in 0..<totalFrames {

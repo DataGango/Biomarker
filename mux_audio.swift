@@ -2,9 +2,10 @@ import AVFoundation
 import Foundation
 
 let root = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
-let videoURL = root.appendingPathComponent("childhood-cancer-video-only.m4v")
-let audioURL = root.appendingPathComponent("childhood-cancer-narration.m4a")
-let outputURL = root.appendingPathComponent("childhood-cancer-short.mp4")
+let topic = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "childhood-cancer"
+let videoURL = root.appendingPathComponent("\(topic)-video-only.m4v")
+let audioURL = root.appendingPathComponent("\(topic)-narration.m4a")
+let outputURL = root.appendingPathComponent("\(topic)-short.mp4")
 try? FileManager.default.removeItem(at: outputURL)
 let videoAsset = AVURLAsset(url: videoURL)
 let audioAsset = AVURLAsset(url: audioURL)

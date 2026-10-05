@@ -1,0 +1,11 @@
+Could tiny robots help guide medicine toward childhood tumors? Researchers are exploring micro and nanorobots, but this is emerging science, not an established treatment.
+
+A recent narrative review describes a neuroblastoma microrobot tested in vitro, and a retinoblastoma catheter system tested in benchtop vascular phantoms.
+
+Those are promising engineering steps, not proof of benefit in children. The review did not identify an interventional pediatric cancer trial of the robotic platforms it examined.
+
+Before clinical use, researchers must show that actuation adds benefit, navigation can be tracked, materials clear safely, and manufacturing is reliable.
+
+The evidence today is preclinical. Families should discuss treatment with a pediatric oncology team.
+
+Source: Micro- and Nanorobots for Targeted Drug Delivery in Childhood Cancer, a literature-based narrative review, October 2026. Educational information, not medical advice.
