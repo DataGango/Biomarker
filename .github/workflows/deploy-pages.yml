@@ -26,6 +26,7 @@ jobs:
           mkdir -p _site/data
           cp index.html childhood_cancer_research.md childhood_cancer_research.pdf micro_nanorobots_childhood_cancer_review.md micro_nanorobots_childhood_cancer_review.pdf diabetes_trials_three_periods.pdf childhood-cancer-hope-progress.png childhood-cancer-short.mp4 nanorobot-short.mp4 video_narration.txt nanorobot-video_narration.txt dataset_analysis.md _site/
           cp data/*.csv data/*.svg _site/data/
+          cp -R share _site/share
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
