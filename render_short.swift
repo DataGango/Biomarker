@@ -7,7 +7,8 @@ import ImageIO
 let root = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
 let topic = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "childhood-cancer"
 let silentMovie = root.appendingPathComponent("\(topic)-silent.mov")
-let imageURL = root.appendingPathComponent("childhood-cancer-hope-progress.png")
+let imageName = topic == "age-groups" ? "age-groups-poster.png" : "childhood-cancer-hope-progress.png"
+let imageURL = root.appendingPathComponent(imageName)
 let width = 1080
 let height = 1920
 let fps: Int32 = 12
@@ -26,6 +27,14 @@ let nanorobotScenes: [(String, String, String, Double, CGColor)] = [
     ("THE CLINICAL GAP", "Promising is not\nproven.", "The review did not identify an interventional pediatric cancer trial of the robotic platforms it examined.", 7.0, CGColor(red: 0.33, green: 0.22, blue: 0.18, alpha: 1)),
     ("WHAT RESEARCH MUST SHOW", "Guide. Track.\nClear safely.", "Studies must test added benefit, reliable imaging and navigation, safe material clearance, and reproducible manufacturing.", 7.0, CGColor(red: 0.075, green: 0.20, blue: 0.18, alpha: 1)),
     ("RESEARCH · NOT MEDICAL ADVICE", "Evidence first.", "Source: 2026 literature-based narrative review. Discuss treatment with a pediatric oncology team.", 7.0, CGColor(red: 0.12, green: 0.23, blue: 0.30, alpha: 1))
+]
+let ageGroupScenes: [(String, String, String, Double, CGColor)] = [
+    ("CHILDHOOD CANCER · AGE-GROUP SNAPSHOT", "One number\ncan't tell every story.", "A different look at U.S. childhood and adolescent cancer estimates.", 6.0, CGColor(red: 0.06, green: 0.11, blue: 0.23, alpha: 1)),
+    ("NCI ESTIMATE · UNITED STATES · 2024", "14,910", "Estimated cancer diagnoses among people ages 0 to 19. This is an estimate, not a final count.", 7.0, CGColor(red: 0.09, green: 0.17, blue: 0.34, alpha: 1)),
+    ("CHILDREN · AGES 0–14", "9,620", "Estimated diagnoses among U.S. children ages 0 to 14 in 2024.", 7.0, CGColor(red: 0.12, green: 0.22, blue: 0.41, alpha: 1)),
+    ("ADOLESCENTS · AGES 15–19", "5,290", "Estimated diagnoses among U.S. adolescents ages 15 to 19 in 2024.", 7.0, CGColor(red: 0.08, green: 0.28, blue: 0.34, alpha: 1)),
+    ("CONTEXT MATTERS", "Population\nestimates aren't\npersonal predictions.", "Cancer types and care needs vary. Bring questions about diagnosis, tests, options, and follow-up to the pediatric oncology team.", 8.0, CGColor(red: 0.12, green: 0.18, blue: 0.35, alpha: 1)),
+    ("SOURCE · NATIONAL CANCER INSTITUTE", "Bring questions.\nGet answers\nin context.", "NCI: Cancer in Children and Adolescents, updated August 27, 2024. General education only; not medical advice.", 8.0, CGColor(red: 0.05, green: 0.13, blue: 0.25, alpha: 1))
 ]
 
 func drawText(_ text: String, context: CGContext, rect: CGRect, size: CGFloat, color: CGColor, fontName: String = "AvenirNext-DemiBold", alignment: CTTextAlignment = .left) {
@@ -75,7 +84,8 @@ func makeFrame(scene: (String, String, String, Double, CGColor), index: Int, pos
     context.fill(CGRect(x: 70, y: 0, width: 9, height: height))
     let white = CGColor(gray: 1, alpha: 1)
     let pale = CGColor(red: 0.82, green: 0.89, blue: 0.85, alpha: 1)
-    drawText("CHILDHOOD CANCER  /  FIELD NOTES", context: context, rect: CGRect(x: 112, y: 1750, width: 850, height: 45), size: 25, color: pale)
+    let seriesTitle = topic == "age-groups" ? "CHILDHOOD CANCER  /  AGE-GROUP SNAPSHOT" : "CHILDHOOD CANCER  /  FIELD NOTES"
+    drawText(seriesTitle, context: context, rect: CGRect(x: 112, y: 1750, width: 850, height: 45), size: 25, color: pale)
     drawText(scene.0, context: context, rect: CGRect(x: 112, y: 1535, width: 850, height: 70), size: 27, color: CGColor(red: 0.96, green: 0.71, blue: 0.40, alpha: 1))
     if index == 0, let poster {
         drawImage(poster, context: context, rect: CGRect(x: 150, y: 520, width: 780, height: 780))
@@ -88,7 +98,8 @@ func makeFrame(scene: (String, String, String, Double, CGColor), index: Int, pos
         context.fill(CGRect(x: 112, y: 880, width: 190, height: 7))
         drawText(scene.2, context: context, rect: CGRect(x: 112, y: 500, width: 850, height: 320), size: 38, color: pale, fontName: "AvenirNext-Regular")
     }
-    drawText("NCI · ACS  |  SOURCES LINKED ON THE WEBSITE", context: context, rect: CGRect(x: 112, y: 110, width: 850, height: 38), size: 20, color: pale, fontName: "AvenirNext-Regular")
+    let sourceLine = topic == "age-groups" ? "SOURCE: NATIONAL CANCER INSTITUTE · CANCER IN CHILDREN AND ADOLESCENTS" : "NCI · ACS  |  SOURCES LINKED ON THE WEBSITE"
+    drawText(sourceLine, context: context, rect: CGRect(x: 112, y: 110, width: 850, height: 38), size: 20, color: pale, fontName: "AvenirNext-Regular")
     return buffer
 }
 
@@ -106,7 +117,7 @@ func main() async throws {
     writer.startWriting()
     writer.startSession(atSourceTime: .zero)
     var frameNumber: Int64 = 0
-    let selectedScenes = topic == "nanorobot" ? nanorobotScenes : scenes
+    let selectedScenes = topic == "nanorobot" ? nanorobotScenes : topic == "age-groups" ? ageGroupScenes : scenes
     for (index, scene) in selectedScenes.enumerated() {
         let frame = try makeFrame(scene: scene, index: index, poster: poster)
         let totalFrames = Int(scene.3 * Double(fps))
