@@ -36,6 +36,14 @@ let ageGroupScenes: [(String, String, String, Double, CGColor)] = [
     ("CONTEXT MATTERS", "Population\nestimates aren't\npersonal predictions.", "Cancer types and care needs vary. Bring questions about diagnosis, tests, options, and follow-up to the pediatric oncology team.", 8.0, CGColor(red: 0.12, green: 0.18, blue: 0.35, alpha: 1)),
     ("SOURCE · NATIONAL CANCER INSTITUTE", "Bring questions.\nGet answers\nin context.", "NCI: Cancer in Children and Adolescents, updated August 27, 2024. General education only; not medical advice.", 8.0, CGColor(red: 0.05, green: 0.13, blue: 0.25, alpha: 1))
 ]
+let fundraisingScenes: [(String, String, String, Double, CGColor)] = [
+    ("DMV COMMUNITY FUNDRAISING", "Care starts\nwith community.", "A local invitation to learn about a verified childhood-cancer fundraiser.", 6.0, CGColor(red: 0.13, green: 0.16, blue: 0.25, alpha: 1)),
+    ("CHILDREN'S CANCER FOUNDATION", "42nd Annual\nGala", "The Foundation lists its 2026 gala for November 7, 2026. Check the organizer's page for current event details.", 7.0, CGColor(red: 0.17, green: 0.21, blue: 0.30, alpha: 1)),
+    ("A REGIONAL COMMUNITY GATHERING", "Researchers.\nFamilies. Allies.", "The Foundation describes its gala as bringing researchers, patients, survivors, donors, and allies together around its mission.", 7.0, CGColor(red: 0.13, green: 0.28, blue: 0.27, alpha: 1)),
+    ("CHECK BEFORE YOU GO", "Venue. Tickets.\nOfficial details.", "Confirm the latest location, ticket availability, and sponsorship details directly with the organizer.", 7.0, CGColor(red: 0.25, green: 0.21, blue: 0.30, alpha: 1)),
+    ("GIVE WITH CLARITY", "Use official\nchannels.", "Verify the recipient and terms. No donation guarantees a particular treatment or outcome.", 7.0, CGColor(red: 0.20, green: 0.27, blue: 0.23, alpha: 1)),
+    ("INDEPENDENT COMMUNITY DRAFT", "Learn more.\nShare with care.", "Official event details: childrenscancerfoundation.org/events/gala. Not an official event announcement. General education only; not medical advice.", 8.0, CGColor(red: 0.12, green: 0.16, blue: 0.23, alpha: 1))
+]
 
 func drawText(_ text: String, context: CGContext, rect: CGRect, size: CGFloat, color: CGColor, fontName: String = "AvenirNext-DemiBold", alignment: CTTextAlignment = .left) {
     let font = CTFontCreateWithName(fontName as CFString, size, nil)
@@ -80,25 +88,52 @@ func makeFrame(scene: (String, String, String, Double, CGColor), index: Int, pos
     let background = scene.4
     context.setFillColor(background)
     context.fill(CGRect(x: 0, y: 0, width: width, height: height))
-    context.setFillColor(CGColor(red: 0.83, green: 0.39, blue: 0.29, alpha: 1))
+    let accent = topic == "fundraising-gala"
+        ? CGColor(red: 0.84, green: 0.75, blue: 0.38, alpha: 1)
+        : CGColor(red: 0.83, green: 0.39, blue: 0.29, alpha: 1)
+    context.setFillColor(accent)
     context.fill(CGRect(x: 70, y: 0, width: 9, height: height))
     let white = CGColor(gray: 1, alpha: 1)
     let pale = CGColor(red: 0.82, green: 0.89, blue: 0.85, alpha: 1)
-    let seriesTitle = topic == "age-groups" ? "CHILDHOOD CANCER  /  AGE-GROUP SNAPSHOT" : "CHILDHOOD CANCER  /  FIELD NOTES"
+    let seriesTitle = topic == "age-groups"
+        ? "CHILDHOOD CANCER  /  AGE-GROUP SNAPSHOT"
+        : topic == "fundraising-gala" ? "CHILDHOOD CANCER  /  DMV COMMUNITY" : "CHILDHOOD CANCER  /  FIELD NOTES"
     drawText(seriesTitle, context: context, rect: CGRect(x: 112, y: 1750, width: 850, height: 45), size: 25, color: pale)
-    drawText(scene.0, context: context, rect: CGRect(x: 112, y: 1535, width: 850, height: 70), size: 27, color: CGColor(red: 0.96, green: 0.71, blue: 0.40, alpha: 1))
-    if index == 0, let poster {
+    drawText(scene.0, context: context, rect: CGRect(x: 112, y: 1535, width: 850, height: 70), size: 27, color: accent)
+    if topic == "fundraising-gala" && index == 0 {
+        let boxColors = [
+            CGColor(red: 0.84, green: 0.75, blue: 0.38, alpha: 1),
+            CGColor(red: 0.39, green: 0.67, blue: 0.59, alpha: 1),
+            CGColor(red: 0.87, green: 0.87, blue: 0.79, alpha: 1)
+        ]
+        let labels = ["COMMUNITY", "VERIFIED\nORGANIZER", "CLEAR\nDETAILS"]
+        for node in 0..<3 {
+            let x = CGFloat(128 + node * 300)
+            let box = CGRect(x: x, y: 800, width: 260, height: 190)
+            context.setFillColor(boxColors[node])
+            context.addPath(CGPath(roundedRect: box, cornerWidth: 14, cornerHeight: 14, transform: nil))
+            context.fillPath()
+            drawText(labels[node], context: context, rect: CGRect(x: x + 16, y: 858, width: 228, height: 74), size: 24, color: node == 2 ? CGColor(red: 0.13, green: 0.16, blue: 0.25, alpha: 1) : white, alignment: .center)
+            if node < 2 {
+                drawText("→", context: context, rect: CGRect(x: x + 264, y: 858, width: 32, height: 60), size: 32, color: white, alignment: .center)
+            }
+        }
+        drawText(scene.1, context: context, rect: CGRect(x: 112, y: 1320, width: 850, height: 160), size: 70, color: white)
+        drawText(scene.2, context: context, rect: CGRect(x: 112, y: 480, width: 850, height: 190), size: 36, color: pale, fontName: "AvenirNext-Regular")
+    } else if index == 0, let poster {
         drawImage(poster, context: context, rect: CGRect(x: 150, y: 520, width: 780, height: 780))
         drawText(scene.1, context: context, rect: CGRect(x: 112, y: 1360, width: 850, height: 150), size: 62, color: white)
         drawText(scene.2, context: context, rect: CGRect(x: 112, y: 390, width: 850, height: 120), size: 34, color: pale, fontName: "AvenirNext-Regular")
     } else {
         let headlineSize: CGFloat = scene.1.count > 18 ? 64 : 92
         drawText(scene.1, context: context, rect: CGRect(x: 112, y: 1000, width: 850, height: 390), size: headlineSize, color: white)
-        context.setFillColor(CGColor(red: 0.83, green: 0.39, blue: 0.29, alpha: 0.5))
+        context.setFillColor(accent.copy(alpha: 0.5) ?? accent)
         context.fill(CGRect(x: 112, y: 880, width: 190, height: 7))
         drawText(scene.2, context: context, rect: CGRect(x: 112, y: 500, width: 850, height: 320), size: 38, color: pale, fontName: "AvenirNext-Regular")
     }
-    let sourceLine = topic == "age-groups" ? "SOURCE: NATIONAL CANCER INSTITUTE · CANCER IN CHILDREN AND ADOLESCENTS" : "NCI · ACS  |  SOURCES LINKED ON THE WEBSITE"
+    let sourceLine = topic == "age-groups"
+        ? "SOURCE: NATIONAL CANCER INSTITUTE · CANCER IN CHILDREN AND ADOLESCENTS"
+        : topic == "fundraising-gala" ? "VERIFY EVENT DETAILS WITH THE CHILDREN'S CANCER FOUNDATION" : "NCI · ACS  |  SOURCES LINKED ON THE WEBSITE"
     drawText(sourceLine, context: context, rect: CGRect(x: 112, y: 110, width: 850, height: 38), size: 20, color: pale, fontName: "AvenirNext-Regular")
     return buffer
 }
@@ -117,7 +152,9 @@ func main() async throws {
     writer.startWriting()
     writer.startSession(atSourceTime: .zero)
     var frameNumber: Int64 = 0
-    let selectedScenes = topic == "nanorobot" ? nanorobotScenes : topic == "age-groups" ? ageGroupScenes : scenes
+    let selectedScenes = topic == "nanorobot"
+        ? nanorobotScenes
+        : topic == "age-groups" ? ageGroupScenes : topic == "fundraising-gala" ? fundraisingScenes : scenes
     for (index, scene) in selectedScenes.enumerated() {
         let frame = try makeFrame(scene: scene, index: index, poster: poster)
         let totalFrames = Int(scene.3 * Double(fps))
