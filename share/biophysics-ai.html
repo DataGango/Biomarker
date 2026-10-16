@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A source-linked educational guide to where biophysics and artificial intelligence meet, with research examples, project ideas, and evidence limits.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Biophysics + AI: From signals to systems">
+<meta property="og:description" content="Explore how measurement, physical models, and AI can help investigate living systems, alongside the limits of each method.">
+<meta property="og:url" content="https://datagango.github.io/Biomarker/share/biophysics-ai.html">
+<meta name="theme-color" content="#172c35">
+<title>Biophysics + AI | From signals to systems</title>
+<style>
+:root{color-scheme:light;--paper:#f5f4ed;--ink:#172c35;--muted:#52656b;--line:#cbd2ca;--teal:#087e78;--coral:#c94837;--gold:#d99a19;--pale-teal:#dcebe4;--pale-coral:#f3e2d8;--white:#fffefa}
+*{box-sizing:border-box}html{background:#dfe4dd}body{margin:0;color:var(--ink);background:#dfe4dd;font:16px/1.5 "Avenir Next",Avenir,"Segoe UI",sans-serif}a{color:#145f5a;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:var(--coral)}a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.poster{width:min(100%,1280px);margin:auto;padding:clamp(20px,4vw,54px);background:radial-gradient(ellipse at 92% 3%,#d8e9df 0,#d8e9df 9%,transparent 9.2%),var(--paper);box-shadow:0 12px 48px #152b321c}.masthead{border-top:8px solid var(--coral);padding-top:18px}.eyebrow,.kicker,.tag,.step-no{font-size:12px;line-height:1.25;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.eyebrow{margin:0 0 14px;color:var(--teal)}.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,.8fr);align-items:center;gap:26px}h1,h2,h3,p{margin-top:0}h1{max-width:790px;margin-bottom:12px;font:700 clamp(44px,7vw,80px)/.98 Georgia,"Times New Roman",serif}h1 span{color:var(--teal)}.thesis{max-width:760px;margin:0;font:clamp(19px,2vw,25px)/1.35 Georgia,"Times New Roman",serif}.hero-figure{margin:0;padding:18px;background:var(--ink);color:var(--white);border-radius:4px}.hero-figure svg{display:block;width:100%;height:auto}.hero-figure figcaption{margin-top:10px;color:#d1e1dc;font-size:13px}.status{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:25px 0 28px;padding:10px 0;border-block:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.05em}.status strong{color:var(--coral)}.section{margin-top:28px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:15px;margin-bottom:12px;border-bottom:2px solid var(--ink);padding-bottom:8px}.section-head h2{margin:4px 0 0;font-size:24px;line-height:1.15}.kicker{color:var(--coral)}.section-note{margin:0;color:var(--muted);font-size:13px}.intersections{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border:1px solid var(--line);background:var(--line)}.intersection{min-height:166px;padding:16px;background:var(--white)}.intersection:nth-child(3n+2){background:#f0f5ef}.tag{color:var(--teal)}.intersection h3{margin:8px 0 6px;font-size:18px;line-height:1.15}.intersection p{margin:0;color:#3f535a;font-size:14px;line-height:1.45}.caution{display:grid;grid-template-columns:1fr 1fr;margin-top:12px;border-left:5px solid var(--gold);background:#f0ead7}.caution p{margin:0;padding:13px 15px;font-size:13px}.caution p+p{border-left:1px solid #d4c9aa}.lower-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:26px;align-items:start}.projects{list-style:none;margin:0;padding:0}.projects li{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:9px;align-items:start;padding:10px 0;border-bottom:1px solid var(--line)}.step-no{color:var(--coral)}.project-copy strong{display:block;font-size:14px}.project-copy span{display:block;margin-top:3px;color:var(--muted);font-size:13px;line-height:1.4}.level{padding:4px 7px;border:1px solid #a9b9b0;color:#255a54;font-size:11px;font-weight:800;white-space:nowrap}.hh-panel{padding:18px;background:var(--ink);color:var(--white);border-radius:4px}.hh-panel .kicker{color:#f1b94b}.hh-panel h2{margin:5px 0 10px;font:24px/1.15 Georgia,"Times New Roman",serif}.equation{margin:0 0 12px;padding:11px 12px;overflow-wrap:anywhere;border-left:3px solid #71c7b5;background:#203c43;color:#f0f4e7;font:13px/1.55 Menlo,Consolas,monospace}.hh-steps{list-style:none;counter-reset:step;margin:0;padding:0}.hh-steps li{counter-increment:step;display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;padding:8px 0;border-top:1px solid #476067;color:#e0e9e4;font-size:13px}.hh-steps li:before{content:"0" counter(step);color:#f1b94b;font-weight:800}.hh-steps code{color:#b6e4d7;font:12px Menlo,Consolas,monospace}.simulation-note{margin:10px 0 0;color:#bdcfca;font-size:12px}.meet-path{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}.meet{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0 0}.meet span{padding:7px 9px;background:var(--pale-teal);color:#15544e;font-size:13px;font-weight:700}.meet b{color:var(--coral)}.path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.path-step{border-top:4px solid var(--teal);padding-top:8px}.path-step:nth-child(even){border-color:var(--coral)}.path-step strong{display:block;font-size:13px;line-height:1.25}.path-step span{display:block;margin-top:4px;color:var(--muted);font-size:12px;line-height:1.4}.clinical-note{margin:24px 0 0;padding:14px 16px;border-left:5px solid var(--coral);background:var(--pale-coral);font-size:14px;font-weight:650}.references{margin-top:22px;border-top:2px solid var(--ink);padding-top:12px}.references h2{margin-bottom:8px;font-size:18px}.ref-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px 18px;margin:0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.4}.ref-list li{padding-left:2px}.footer-line{display:flex;justify-content:space-between;gap:12px;margin-top:14px;color:var(--muted);font-size:11px}
+@media(max-width:850px){.hero{grid-template-columns:minmax(0,1fr) minmax(210px,.75fr)}.intersections{grid-template-columns:repeat(2,minmax(0,1fr))}.intersection:nth-child(3n+2){background:var(--white)}.intersection:nth-child(4n+2),.intersection:nth-child(4n+3){background:#f0f5ef}.lower-grid,.meet-path{grid-template-columns:1fr;gap:20px}}
+@media(max-width:560px){body{font-size:15px}.poster{padding:18px 16px 26px;background:var(--paper);box-shadow:none}.hero{grid-template-columns:1fr;gap:16px}h1{font-size:clamp(42px,12vw,62px)}.hero-figure{max-width:440px}.hero-figure svg{max-height:150px}.status{margin:19px 0}.section-head{align-items:flex-start;flex-direction:column;gap:4px}.section-head h2{font-size:22px}.intersections{grid-template-columns:1fr}.intersection,.intersection:nth-child(n){min-height:0;padding:14px;background:var(--white)}.intersection:nth-child(even){background:#f0f5ef}.caution{grid-template-columns:1fr}.caution p+p{border-top:1px solid #d4c9aa;border-left:0}.projects li{grid-template-columns:25px minmax(0,1fr)}.level{grid-column:2;justify-self:start}.path{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:13px}.ref-list{grid-template-columns:1fr 1fr}.footer-line{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{@page{size:A3 portrait;margin:10mm}html,body{background:#fff}.poster{width:100%;max-width:none;padding:0;box-shadow:none}.intersection,.hh-panel,.hero-figure,.clinical-note{break-inside:avoid}a{text-decoration:none}}
+</style>
+</head>
+<body>
+<main class="poster" aria-labelledby="poster-title">
+  <header class="masthead">
+    <p class="eyebrow">A field guide · Biophysics + artificial intelligence</p>
+    <div class="hero">
+      <div>
+        <h1 id="poster-title">From <span>signals</span><br>to systems</h1>
+        <p class="thesis">Biophysics explains how living systems work; AI helps find patterns and build models. The strongest work joins both with experiments, careful validation, and domain expertise.</p>
+      </div>
+      <figure class="hero-figure">
+        <svg viewBox="0 0 520 190" role="img" aria-labelledby="map-title map-desc">
+          <title id="map-title">A path from biological signals to tested hypotheses</title>
+          <desc id="map-desc">A brain-wave trace and molecular nodes feed into a model, which leads to a testable biological hypothesis. This is a concept drawing, not patient data.</desc>
+          <path d="M8 88h35l12-35 18 71 20-52 15 16h24" fill="none" stroke="#f1b94b" stroke-width="4" stroke-linejoin="round"/>
+          <g fill="#71c7b5" stroke="#dff2e9" stroke-width="2"><circle cx="37" cy="147" r="8"/><circle cx="68" cy="143" r="6"/><circle cx="96" cy="155" r="9"/><circle cx="127" cy="140" r="7"/></g>
+          <g stroke="#71c7b5" stroke-width="2"><path d="m37 147 31-4 28 12 31-15"/><path d="m68 143 12-24m16 36 14 22m17-37 18 18"/></g>
+          <path d="M151 95h54m-12-12 12 12-12 12" fill="none" stroke="#e87561" stroke-width="3"/>
+          <rect x="220" y="53" width="112" height="84" rx="4" fill="#315158" stroke="#91cfc0" stroke-width="2"/>
+          <path d="M239 78h72M239 94h45M239 110h61" stroke="#e8f3ec" stroke-width="4" stroke-linecap="round"/>
+          <path d="M339 95h54m-12-12 12 12-12 12" fill="none" stroke="#e87561" stroke-width="3"/>
+          <circle cx="438" cy="95" r="37" fill="#f1b94b"/><path d="m422 96 11 11 22-25" fill="none" stroke="#172c35" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="15" y="184" fill="#d1e1dc" font-size="12">BIOLOGY</text><text x="241" y="158" fill="#d1e1dc" font-size="12">MODEL</text><text x="397" y="158" fill="#d1e1dc" font-size="12">TEST</text>
+        </svg>
+        <figcaption>Measure a living process → model it → test what the model predicts.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <div class="status"><strong>Educational overview · DRAFT / NEEDS REVIEW</strong><span>Research tools are not clinical decisions</span></div>
+
+  <section class="section" aria-labelledby="intersections-title">
+    <div class="section-head"><div><span class="kicker">01 / Where it shows up</span><h2 id="intersections-title">Six real-world intersections</h2></div><p class="section-note">Mechanism + measurement + computation</p></div>
+    <div class="intersections">
+      <article class="intersection"><span class="tag">Images</span><h3>Brain imaging</h3><p>AI can help analyze MRI and other scans, segment structures, and quantify patterns for research or clinical workflows. [1]</p></article>
+      <article class="intersection"><span class="tag">Signals</span><h3>Brain–computer interfaces</h3><p>Signal processing and ML decode task-specific brain activity to control a cursor, device, or communication system. Results depend on the person, task, and setup. [2]</p></article>
+      <article class="intersection"><span class="tag">Molecules</span><h3>Protein folding + drug discovery</h3><p>Structure models can prioritize targets, binding questions, and experiments. A predicted structure is a hypothesis, not proof of binding, efficacy, or a therapy. [3]</p></article>
+      <article class="intersection"><span class="tag">Physiology</span><h3>ECG</h3><p>Models can detect waveform patterns that merit review, including patterns studied for atrial fibrillation. They do not replace clinical interpretation or establish treatment. [4, 5]</p></article>
+      <article class="intersection"><span class="tag">Neurons</span><h3>Computational neuroscience</h3><p>Equations and simulations test how ion channels, cells, and circuits could produce observed activity. A simulation is a model output, not patient evidence. [6, 7]</p></article>
+      <article class="intersection"><span class="tag">Tissues</span><h3>Cancer biophysics</h3><p>Mechanics, transport, and cell signaling help describe how tumors interact with their microenvironment; computation can quantify patterns and test research hypotheses. [8]</p></article>
+    </div>
+    <aside class="caution" aria-label="Limits on brain-signal interpretation and clinical use"><p><strong>EEG is not mind-reading.</strong> Scalp EEG measures summed electrical activity, not thoughts. Emotion or mental-state inference is limited and context-dependent; results can vary across tasks, people, devices, and settings. [9]</p><p><strong>Clinical boundary.</strong> AI models may assist research, screening, or clinician workflows. They are not standalone diagnosis or treatment, and performance in a study does not guarantee benefit for an individual.</p></aside>
+  </section>
+
+  <div class="section lower-grid">
+    <section aria-labelledby="projects-title"><div class="section-head"><div><span class="kicker">02 / Try it</span><h2 id="projects-title">Five hands-on projects</h2></div></div>
+      <ol class="projects">
+        <li><span class="step-no">01</span><div class="project-copy"><strong>Segment a brain MRI</strong><span>Compare a simple image-processing baseline with a small segmentation model; inspect errors by region.</span></div><span class="level">Intermediate</span></li>
+        <li><span class="step-no">02</span><div class="project-copy"><strong>Build a motor-imagery BCI demo</strong><span>Filter EEG, extract features, and evaluate across held-out people or sessions, not just random windows.</span></div><span class="level">Intermediate</span></li>
+        <li><span class="step-no">03</span><div class="project-copy"><strong>Compare protein structures</strong><span>Explore a predicted structure against an experimentally resolved reference; record uncertainty and differences.</span></div><span class="level">Intermediate</span></li>
+        <li><span class="step-no">04</span><div class="project-copy"><strong>Classify ECG beats</strong><span>Use PhysioNet annotations; split by person/record, report class imbalance, and test noisy signals.</span></div><span class="level">Intermediate</span></li>
+        <li><span class="step-no">05</span><div class="project-copy"><strong>Model tumor-cell migration</strong><span>Create a toy simulation where stiffness or chemical gradients change movement; compare model predictions with published observations.</span></div><span class="level">Advanced</span></li>
+      </ol>
+    </section>
+    <section class="hh-panel" aria-labelledby="hh-title"><span class="kicker">03 / A neuron in silico</span><h2 id="hh-title">Hodgkin–Huxley with Brian2</h2>
+      <p class="equation">Cₘ · dV/dt = I − gNa·m³h(V−ENa) − gK·n⁴(V−EK) − gL(V−EL)<br>m, h, n: voltage-dependent channel gates</p>
+      <ol class="hh-steps"><li><span>Write the membrane equation and gate dynamics; use consistent Brian2 units. [6, 7]</span></li><li><span>Define a one-cell <code>NeuronGroup</code> with the HH state variables and parameters.</span></li><li><span>Inject a current pulse, then run the simulation for a short interval.</span></li><li><span>Record voltage with <code>StateMonitor</code>; plot spikes and vary the input current.</span></li></ol>
+      <p class="simulation-note">This is a model workflow: spikes depend on chosen equations, parameters, and numerical settings. It illustrates membrane dynamics; it is not a measurement from a person.</p>
+    </section>
+  </div>
+
+  <div class="meet-path">
+    <section aria-labelledby="meet-title"><div class="section-head"><div><span class="kicker">04 / The overlap</span><h2 id="meet-title">Where the fields meet</h2></div></div><p class="section-note">A reliable result needs all four, in a loop:</p><div class="meet" aria-label="Physics, biology, data, and validation form an iterative loop"><span>Physics</span><b aria-hidden="true">+</b><span>Biology</span><b aria-hidden="true">+</b><span>Data / AI</span><b aria-hidden="true">+</b><span>Validation</span></div></section>
+    <section aria-labelledby="path-title"><div class="section-head"><div><span class="kicker">05 / Start with foundations</span><h2 id="path-title">A practical learning path</h2></div></div><div class="path"><div class="path-step"><strong>01 · Quantitative</strong><span>Calculus, linear algebra, probability, Python.</span></div><div class="path-step"><strong>02 · Biological</strong><span>Membranes, signals, proteins, cells, tissues.</span></div><div class="path-step"><strong>03 · Computational</strong><span>Signal processing, simulation, ML, evaluation.</span></div><div class="path-step"><strong>04 · Reproducible</strong><span>Build one project; compare baselines, disclose limits.</span></div></div></section>
+  </div>
+
+  <p class="clinical-note">Models can assist research and screening, but are not standalone diagnosis or treatment. Protein predictions generate testable hypotheses, not proven therapies. Simulated results are not patient evidence.</p>
+
+  <footer class="references" aria-labelledby="references-title"><h2 id="references-title">Clickable sources</h2><ol class="ref-list">
+    <li><a href="https://www.nibib.nih.gov/science-education/science-topics/artificial-intelligence-ai" target="_blank" rel="noopener noreferrer">NIBIB / NIH, Artificial Intelligence in biomedicine</a></li>
+    <li><a href="https://doi.org/10.1038/s41586-023-06377-x" target="_blank" rel="noopener noreferrer">Willett et al., Nature (2023), speech neuroprosthesis</a></li>
+    <li><a href="https://doi.org/10.1038/s41586-021-03819-2" target="_blank" rel="noopener noreferrer">Jumper et al., Nature (2021), AlphaFold</a></li>
+    <li><a href="https://doi.org/10.1038/s41591-018-0268-3" target="_blank" rel="noopener noreferrer">Attia et al., Nature Medicine (2019), AI-ECG</a></li>
+    <li><a href="https://physionet.org/content/mitdb/1.0.0/" target="_blank" rel="noopener noreferrer">PhysioNet, MIT-BIH Arrhythmia Database</a></li>
+    <li><a href="https://doi.org/10.1113/jphysiol.1952.sp004764" target="_blank" rel="noopener noreferrer">Hodgkin &amp; Huxley, Journal of Physiology (1952)</a></li>
+    <li><a href="https://brian2.readthedocs.io/en/stable/" target="_blank" rel="noopener noreferrer">Brian2 documentation, spiking-neuron simulator</a></li>
+    <li><a href="https://doi.org/10.1038/nrc3000" target="_blank" rel="noopener noreferrer">Kumar &amp; Weaver, Nature Reviews Cancer (2011), tumor-cell mechanics</a></li>
+    <li><a href="https://doi.org/10.3389/fpsyg.2023.1289816" target="_blank" rel="noopener noreferrer">Zhang et al., Frontiers in Psychology (2024), EEG emotion-recognition challenges</a></li>
+  </ol><p class="footer-line"><span>General education · Not medical advice · Draft for review</span><span>Independent educational poster · v1</span></p></footer>
+</main>
+</body>
+</html>
